@@ -1,0 +1,10 @@
+@CHARSET "ISO-8859-1";
+
+body{
+font-size:12px;
+font-style:Verdana;
+}
+
+.ui-widget, .ui-widget .ui-widget {
+font-size: 12px; !important;
+}

@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/pages/template.xhtml">
+
+	<ui:define name="contenido">
+		<h:form>
+			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:panel header="Growl">
+				<h:panelGrid columns="2">
+					<h:outputText value="Your Name: *" />
+					<p:inputText value="#{editorManaged.value}" required="true"
+						label="Name" />
+				</h:panelGrid>
+				<p:commandButton value="Save" actionListener="#{editorManaged.save}"
+					update="growl" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+	
+</ui:composition>
