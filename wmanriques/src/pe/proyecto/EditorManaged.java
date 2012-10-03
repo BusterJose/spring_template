@@ -17,11 +17,13 @@ public class EditorManaged {
 	public void setValue(String value) {
 		this.value = value;
 	}
-	
-	public void save(ActionEvent actionEvent) {  
-        FacesContext context = FacesContext.getCurrentInstance();  
-          
-        context.addMessage(null, new FacesMessage("Successful", "Hello " + value));  
-        context.addMessage(null, new FacesMessage("Second Message", "Additional Info Here..."));  
-    } 
+
+	public void save(ActionEvent actionEvent) {
+		FacesContext context = FacesContext.getCurrentInstance();
+
+		context.addMessage(null, new FacesMessage("Successful", "Hello "
+				+ value));
+		context.addMessage(null, new FacesMessage("Second Message",
+				"Additional Info Here..."));
+	}
 }
