@@ -6,24 +6,8 @@ spring integration
 sts
 ===
 
-config git ssh key
+config git ssh key      git clone default     git commit      git push      git pull
 
-git clone default
+server stop     war remove      server clean
 
-git commit 
-
-git push
-
-git pull
-
-
-server stop
-
-war remove 
-
-server clean
-
-
-project clean - build
-
-project run
+project clean - build     project run
