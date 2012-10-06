@@ -12,9 +12,8 @@ import org.springframework.transaction.annotation.Transactional;
 public class ServiceEditor {
 	
 	@Autowired
-	private EditorMapper editorMapper;
+	private EditorMapperAnnotation editorMapper;
 	
-	@Transactional(readOnly=true)
 	public List<Editor> findAll(){
 		List<Editor> editors = editorMapper.findAll();
 		return editors;

@@ -6,10 +6,10 @@ import org.apache.ibatis.annotations.*;
 
 public interface EditorMapperAnnotation {
 
-	@Select(value = "SELECT ID,FIRST_NAME,LAST_NAME,BIRTH_DATE FROM CONTACT")
+	@Select(value = "SELECT EDIT_ID,EDIT_VALUE FROM EDITOR")
 	@Results(value = { @Result(javaType = Editor.class),
-			@Result(property = "id", column = "EDIT_ID"),
-			@Result(property = "firstName", column = "FIRST_NAME") })
+			@Result(property = "edit_id", column = "EDIT_ID"),
+			@Result(property = "edit_value", column = "EDIT_VALUE") })
 	List<Editor> findAll();
 
 }
