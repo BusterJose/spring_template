@@ -13,11 +13,11 @@ import org.springframework.transaction.annotation.Transactional;
 public class PersonajeServiceImpl implements PersonajeService {
 
 	@Autowired
-	private PersonajeMapper personajeMapper;
+	private PersonajeMapperXML personajeMapperXML;
 
 	@Transactional(readOnly = true)
 	public List<Personaje> findAll() {
-		List<Personaje> personajes = personajeMapper.findAll();
+		List<Personaje> personajes = personajeMapperXML.findAll();
 		return personajes;
 	}
 }
