@@ -11,4 +11,16 @@
     	</el-resolver>
 	</application>
 	
+	<navigation-rule>
+        <display-name>pages/login.xhtml</display-name>
+        <from-view-id>/pages/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{authenticationManaged.login}</from-action>
+            <from-outcome>admin</from-outcome>
+            <to-view-id>/pages/admin/home.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+
+	
 </faces-config>

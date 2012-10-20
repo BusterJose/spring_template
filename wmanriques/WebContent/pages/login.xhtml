@@ -5,19 +5,20 @@
 	xmlns:p="http://primefaces.org/ui" 
 	template="/pages/template.xhtml">
 
-	<ui:define name="contenido">
-		<h:form>
-			<p:growl id="growl" showDetail="true" sticky="true" />
-			<p:panel header="Growl">
+	<ui:define name="contenido">		
+		<h:form prependId="false" >
+			<p:panel header="Login">
 				<h:panelGrid columns="2">
-					<h:outputText value="Your Name: *" />
-					<p:inputText value="#{personajeManaged.value}" required="true"
-						label="Name" />
+					<h:outputText value="Your User: *" />
+					<p:inputText required="true" value="#{authenticationManaged.user}"/>
 				</h:panelGrid>
-				<p:commandButton value="Save" actionListener="#{personajeManaged.save}"
-					update="growl" />
+				<h:panelGrid columns="2">
+					<h:outputText value="Password: *" />
+					<p:password required="true" value="#{authenticationManaged.password}"/>
+				</h:panelGrid>
+				<p:commandButton value="log in" action="#{authenticationManaged.login}"/>
 			</p:panel>
-		</h:form>
+		</h:form>	
 	</ui:define>
 	
 </ui:composition>
