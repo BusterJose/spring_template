@@ -1,4 +1,5 @@
-package pe.proyecto.managed;
+package pe.proyecto;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;

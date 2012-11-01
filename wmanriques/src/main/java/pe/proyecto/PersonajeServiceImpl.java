@@ -1,4 +1,6 @@
-package pe.proyecto.service;
+package pe.proyecto;
+
+
 
 import java.util.List;
 
@@ -9,8 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import pe.proyecto.dao.PersonajeMapperXML;
-import pe.proyecto.model.Personaje;
+
+
 
 @Service
 @Repository
