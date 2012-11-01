@@ -18,9 +18,8 @@
             <from-action>#{authenticationManaged.login}</from-action>
             <from-outcome>admin</from-outcome>
             <to-view-id>/pages/admin/home.xhtml</to-view-id>
+            <redirect></redirect>
         </navigation-case>
     </navigation-rule>
-
-
 	
 </faces-config>

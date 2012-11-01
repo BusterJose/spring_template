@@ -1,6 +1,4 @@
-package pe.proyecto;
-
-
+package pe.proyecto.persistence;
 
 
 import java.util.List;
@@ -9,7 +7,7 @@ import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
 
-
+import pe.proyecto.domain.Personaje;
 
 public interface PersonajeMapper {
 	

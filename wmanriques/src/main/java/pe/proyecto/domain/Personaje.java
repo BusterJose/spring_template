@@ -1,4 +1,4 @@
-package pe.proyecto;
+package pe.proyecto.domain;
 
 
 import java.io.Serializable;

@@ -1,5 +1,4 @@
-package pe.proyecto;
-
+package pe.proyecto.service.mybatis;
 
 
 import java.util.List;
@@ -11,8 +10,9 @@ import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-
-
+import pe.proyecto.domain.Personaje;
+import pe.proyecto.persistence.PersonajeMapperXML;
+import pe.proyecto.service.PersonajeService;
 
 @Service
 @Repository
