@@ -30,4 +30,5 @@ public class PersonajeServiceImpl implements PersonajeService {
 		List<Personaje> personajes = personajeMapperXML.findAll();
 		return personajes;
 	}
+	
 }
