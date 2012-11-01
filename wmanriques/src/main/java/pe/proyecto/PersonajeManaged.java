@@ -1,4 +1,7 @@
-package pe.proyecto.managed;
+package pe.proyecto;
+
+
+
 
 import java.util.List;
 
@@ -10,8 +13,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 
-import pe.proyecto.model.Personaje;
-import pe.proyecto.service.PersonajeService;
+
+
+
 
 @Controller
 public class PersonajeManaged {
