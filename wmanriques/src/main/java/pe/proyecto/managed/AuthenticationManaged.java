@@ -1,4 +1,4 @@
-package pe.proyecto;
+package pe.proyecto.managed;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -12,6 +12,10 @@ import org.springframework.stereotype.Controller;
 public class AuthenticationManaged {
 
 	private String user = null;
+	private String password = null;
+
+	@Autowired
+	private AuthenticationManager authenticationManager = null;
 
 	public String getUser() {
 		return user;
@@ -37,11 +41,6 @@ public class AuthenticationManaged {
 			AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
 	}
-
-	private String password = null;
-
-	@Autowired
-	private AuthenticationManager authenticationManager = null;
 
 	public String login() {
 

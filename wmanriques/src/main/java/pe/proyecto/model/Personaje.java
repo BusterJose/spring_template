@@ -1,4 +1,4 @@
-package pe.proyecto;
+package pe.proyecto.model;
 
 import java.io.Serializable;
 
