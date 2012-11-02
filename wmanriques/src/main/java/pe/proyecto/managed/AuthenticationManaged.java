@@ -1,6 +1,5 @@
 package pe.proyecto.managed;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -44,24 +43,20 @@ public class AuthenticationManaged {
 	}
 
 	public String login() {
-
 		try {
-
 			Authentication request = new UsernamePasswordAuthenticationToken(
 					this.getUser(), this.getPassword());
-
 			Authentication result = authenticationManager.authenticate(request);
-
 			SecurityContextHolder.getContext().setAuthentication(result);
-
 		} catch (AuthenticationException e) {
-
 			e.printStackTrace();
-
 		}
-
 		return "admin";
+	}
 
+	public String logout() {
+		SecurityContextHolder.clearContext();
+		return "loggedout";
 	}
 
 }

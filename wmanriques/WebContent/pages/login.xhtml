@@ -10,7 +10,8 @@
 			<p:panel header="Login">
 				<h:panelGrid columns="2">
 					<h:outputText value="Your User: *" />
-					<p:inputText required="true" value="#{authenticationManaged.user}"/>
+					<p:inputText required="true" value="#{authenticationManaged.user}"
+					requiredMessage="user required"/>
 				</h:panelGrid>
 				<h:panelGrid columns="2">
 					<h:outputText value="Password: *" />

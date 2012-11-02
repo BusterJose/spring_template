@@ -21,5 +21,17 @@
             <redirect></redirect>
         </navigation-case>
     </navigation-rule>
+    
+    <navigation-rule>
+        <display-name>pages/admin/home.xhtml</display-name>
+        <from-view-id>/pages/admin/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{authenticationManaged.logout}</from-action>
+            <from-outcome>loggedout</from-outcome>
+            <to-view-id>/pages/login.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    
 	
 </faces-config>
