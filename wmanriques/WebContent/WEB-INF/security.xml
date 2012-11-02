@@ -12,7 +12,7 @@
         <intercept-url pattern="/**" access="permitAll"/>
         <form-login login-page="/pages/login.jsf"/>
     </http>
-     
+  
     <authentication-manager alias="authenticationManager">
         <authentication-provider>
             <user-service>
