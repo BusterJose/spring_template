@@ -17,6 +17,11 @@
 					<h:outputText value="Password: *" />
 					<p:password required="true" value="#{authenticationManaged.password}"/>
 				</h:panelGrid>
+				<h:selectBooleanCheckbox
+					value="#{authenticationManaged.rememberMe}" 
+					label="Remember Me">
+					Remember Me
+				</h:selectBooleanCheckbox>
 				<p:commandButton value="log in" action="#{authenticationManaged.login}"/>
 			</p:panel>
 		</h:form>	

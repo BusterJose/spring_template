@@ -11,14 +11,41 @@
         <intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
         <intercept-url pattern="/**" access="permitAll"/>
         <form-login login-page="/pages/login.jsf"/>
+        <remember-me key="jsfspring-sec" services-ref="rememberMeServices"/>
+        <logout
+        	invalidate-session="true"
+        	delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
+        	logout-success-url="/pages/login.jsf"/>
     </http>
   
     <authentication-manager alias="authenticationManager">
+    	<authentication-provider ref="rememberMeAuthenticationProvider">
+    	</authentication-provider>
         <authentication-provider>
-            <user-service>
+            <user-service id="userDetailsService">
                 <user authorities="ROLE_ADMIN" name="admin" password="admin" />
             </user-service>
         </authentication-provider>
     </authentication-manager>
+    
+    <beans:bean id="rememberMeServices"
+        class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+        <beans:property  name="key" value="jsfspring-sec" />
+        <beans:property  name="userDetailsService" ref="userDetailsService" />
+        <beans:property  name="alwaysRemember" value="true" />
+        <beans:property  name="tokenValiditySeconds" value="60" />
+    </beans:bean>
+    
+    
+    <beans:bean id="rememberMeAuthenticationProvider"
+    	class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+    	<beans:property name="key" value="jsfspring-sec"/>
+    </beans:bean>
+    
+    <beans:bean id="rememberMeFilter"
+    	class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+    	<beans:property name="rememberMeServices" ref="rememberMeServices"/>
+        <beans:property name="authenticationManager" ref="authenticationManager" />
+    </beans:bean>
 
 </beans:beans>
