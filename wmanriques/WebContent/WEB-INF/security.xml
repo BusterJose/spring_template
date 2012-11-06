@@ -29,23 +29,23 @@
     </authentication-manager>
     
     <beans:bean id="rememberMeServices"
-        class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
-        <beans:property  name="key" value="jsfspring-sec" />
-        <beans:property  name="userDetailsService" ref="userDetailsService" />
-        <beans:property  name="alwaysRemember" value="true" />
-        <beans:property  name="tokenValiditySeconds" value="60" />
-    </beans:bean>
+            class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
+	    <beans:constructor-arg value="jsfspring-sec"/>
+	    <beans:constructor-arg ref="userDetailsService"/>
+	    <beans:property name="alwaysRemember" value="true"/>
+	    <beans:property name="tokenValiditySeconds" value="60" />
+	</beans:bean>
     
     
     <beans:bean id="rememberMeAuthenticationProvider"
-    	class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-    	<beans:property name="key" value="jsfspring-sec"/>
-    </beans:bean>
-    
-    <beans:bean id="rememberMeFilter"
-    	class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
-    	<beans:property name="rememberMeServices" ref="rememberMeServices"/>
-        <beans:property name="authenticationManager" ref="authenticationManager" />
-    </beans:bean>
+            class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
+	    <beans:constructor-arg value="jsfspring-sec"/>
+	</beans:bean>
+	
+	<beans:bean id="rememberMeFilter"
+	            class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
+	    <beans:constructor-arg ref="authenticationManager"/>
+	    <beans:constructor-arg ref="rememberMeServices"/>
+	</beans:bean>
 
 </beans:beans>
