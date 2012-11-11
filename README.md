@@ -1,12 +1,17 @@
 spring_template
 ===============
 
-spring integration
+spring 3.1  /  spring security 3.1  /  primefaces 3.4.1  /  mybatis 3.1
+
+git
+===
+
+config git ssh key
 
 sts
 ===
 
-config git ssh key   /   git clone default   /   git commit   /   git push   /   git pull
+import    /   projects from git    /   config default 
 
 server stop   /   war remove   /   server clean
 
