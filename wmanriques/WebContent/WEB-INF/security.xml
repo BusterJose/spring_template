@@ -1,51 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans:beans xmlns="http://www.springframework.org/schema/security"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans 
-                    http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-                    http://www.springframework.org/schema/security 
-                    http://www.springframework.org/schema/security/spring-security-3.1.xsd">
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.1.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.1.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.1.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.1.xsd">
 
-    <http auto-config="true" use-expressions="true">
-        <intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
-        <intercept-url pattern="/**" access="permitAll"/>
-        <form-login login-page="/pages/login.jsf"/>
-        <remember-me key="jsfspring-sec" services-ref="rememberMeServices"/>
-        <logout
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>/WEB-INF/resources/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.username}" />
+		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="transactionManager"
+        class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource" />
+    </bean>
+    
+    <sec:http auto-config="true" use-expressions="true">
+        <sec:intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
+        <sec:intercept-url pattern="/**" access="permitAll"/>
+        <sec:form-login login-page="/pages/login.jsf"/>
+        <sec:remember-me key="jsfspring-sec" services-ref="rememberMeServices"/>
+        <sec:logout
         	invalidate-session="true"
         	delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
         	logout-success-url="/pages/login.jsf"/>
-    </http>
+    </sec:http>
+    
+    <bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="enableAuthorities" value="true"/>
+        <property name="usersByUsernameQuery">
+            <value>
+	            SELECT USE_USERNAME, USE_PASSWORD, USE_ENABLED 
+	            FROM USERS 
+	            WHERE USE_USERNAME = ?
+            </value>
+        </property>
+        <property name="authoritiesByUsernameQuery">
+            <value>
+                 SELECT ROL_USERNAME, ROL_ROLE_NAME 
+                 FROM ROLES
+                 WHERE ROL_USERNAME = ?
+            </value>
+        </property>
+   </bean>
   
-    <authentication-manager alias="authenticationManager">
-    	<authentication-provider ref="rememberMeAuthenticationProvider">
-    	</authentication-provider>
-        <authentication-provider>
-            <user-service id="userDetailsService">
-                <user authorities="ROLE_ADMIN" name="admin" password="admin" />
-            </user-service>
-        </authentication-provider>
-    </authentication-manager>
+    <sec:authentication-manager alias="authenticationManager">
+    	<sec:authentication-provider ref="rememberMeAuthenticationProvider">
+    	</sec:authentication-provider>
+    	<!-- 
+    	<sec:authentication-provider>
+            <sec:user-service id="userDetailsService">
+                <sec:user authorities="ROLE_ADMIN" name="admin" password="admin" />
+            </sec:user-service>
+        </sec:authentication-provider>
+    	 -->        
+        <sec:authentication-provider user-service-ref="userDetailsService">
+        </sec:authentication-provider>
+    </sec:authentication-manager>
     
-    <beans:bean id="rememberMeServices"
+    <bean id="rememberMeServices"
             class="org.springframework.security.web.authentication.rememberme.TokenBasedRememberMeServices">
-	    <beans:constructor-arg value="jsfspring-sec"/>
-	    <beans:constructor-arg ref="userDetailsService"/>
-	    <beans:property name="alwaysRemember" value="true"/>
-	    <beans:property name="tokenValiditySeconds" value="60" />
-	</beans:bean>
+	    <constructor-arg value="jsfspring-sec"/>
+	    <constructor-arg ref="userDetailsService"/>
+	    <property name="alwaysRemember" value="true"/>
+	    <property name="tokenValiditySeconds" value="60" />
+	</bean>
     
-    
-    <beans:bean id="rememberMeAuthenticationProvider"
+    <bean id="rememberMeAuthenticationProvider"
             class="org.springframework.security.authentication.RememberMeAuthenticationProvider">
-	    <beans:constructor-arg value="jsfspring-sec"/>
-	</beans:bean>
+	    <constructor-arg value="jsfspring-sec"/>
+	</bean>
 	
-	<beans:bean id="rememberMeFilter"
+	<bean id="rememberMeFilter"
 	            class="org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter">
-	    <beans:constructor-arg ref="authenticationManager"/>
-	    <beans:constructor-arg ref="rememberMeServices"/>
-	</beans:bean>
+	    <constructor-arg ref="authenticationManager"/>
+	    <constructor-arg ref="rememberMeServices"/>
+	</bean>
+	
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource" />
+        <property name="typeAliasesPackage" value="pe.proyecto.domain" />
+    </bean>
 
-</beans:beans>
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="pe.proyecto.persistence" />
+    </bean>
+
+</beans>
