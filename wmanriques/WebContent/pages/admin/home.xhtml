@@ -11,11 +11,14 @@
 			<p:panel header="Growl">
 				<h:panelGrid columns="2">
 					<h:outputText value="Your Name: *" />
-					<p:inputText value="#{personajeManaged.value}" required="true"
-						label="Name" />
+					<p:inputText value="#{personajeManaged.value}" required="true" 
+						label="Name" requiredMessage="name required"/>
 				</h:panelGrid>
-				<p:commandButton value="Save" actionListener="#{personajeManaged.save}"
-					update="growl" />
+				<p:commandButton id="boton" value="Save" actionListener="#{personajeManaged.save}"
+					update="growl"/>
+				<script>
+					$('[id*="boton"]').css('color','blue');
+				</script>
 			</p:panel>
 		</h:form>		
 		<h:form>
