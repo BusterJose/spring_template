@@ -1,4 +1,4 @@
-package pe.proyecto.service.mybatis;
+package pe.proyecto.service.impl;
 
 
 import java.util.List;
