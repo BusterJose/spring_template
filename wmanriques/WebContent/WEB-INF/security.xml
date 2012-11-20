@@ -36,12 +36,12 @@
     <sec:http auto-config="true" use-expressions="true">
         <sec:intercept-url pattern="/pages/admin/**" access="hasRole('ROLE_ADMIN')" />
         <sec:intercept-url pattern="/**" access="permitAll"/>
-        <sec:form-login login-page="/pages/login.jsf"/>
+        <sec:form-login login-page="/pages/common/login.jsf"/>
         <sec:remember-me key="jsfspring-sec" services-ref="rememberMeServices"/>
         <sec:logout
         	invalidate-session="true"
         	delete-cookies="JSESSIONID,SPRING_SECURITY_REMEMBER_ME_COOKIE"
-        	logout-success-url="/pages/login.jsf"/>
+        	logout-success-url="/pages/common/login.jsf"/>
     </sec:http>
     
     <bean id="userDetailsService" class="org.springframework.security.core.userdetails.jdbc.JdbcDaoImpl">

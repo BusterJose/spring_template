@@ -2,8 +2,8 @@
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13488097086074" configfile="/wmanriques/WebContent/WEB-INF/faces-config.xml">
   <nodes xsi:type="pageflow:PFPage" name="pages/login.jsf" x="122" y="178" id="pf13507329743800" referenceLink="//@navigationRule.0/@fromViewId|" path="/pages/login.jsf"/>
   <nodes xsi:type="pageflow:PFPage" name="pages/home.jsf" x="122" y="562" id="pf13507329743812" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" path="/pages/home.jsf"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/login.xhtml" x="122" y="946" id="pf13518121432630" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf13518121432631" inlinks="pf13518662739570" path="/pages/login.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="pages/admin/home.xhtml" x="338" y="946" id="pf13518121432632" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13518662739570" inlinks="pf13518121432631" path="/pages/admin/home.xhtml"/>
-  <links id="pf13518121432631" target="pf13518121432632" source="pf13518121432630" outcome="admin" redirect="true" fromaction="#{authenticationManaged.login}"/>
-  <links id="pf13518662739570" target="pf13518121432630" source="pf13518121432632" outcome="loggedout" redirect="true" fromaction="#{authenticationManaged.logout}"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/admin/home.xhtml" x="338" y="946" id="pf13518121432632" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf13534255123300" inlinks="pf13534255123301" path="/pages/admin/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="pages/common/login.xhtml" id="pf13534255123302" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" outlinks="pf13534255123301" inlinks="pf13534255123300" path="/pages/common/login.xhtml"/>
+  <links id="pf13534255123301" target="pf13518121432632" source="pf13534255123302" outcome="admin" redirect="true" fromaction="#{authenticationManaged.login}"/>
+  <links id="pf13534255123300" target="pf13534255123302" source="pf13518121432632" outcome="loggedout" redirect="true" fromaction="#{authenticationManaged.logout}"/>
 </pageflow:Pageflow>

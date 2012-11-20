@@ -12,7 +12,7 @@
 				<h:panelGrid columns="2">
 					<h:outputText value="Your Name: *" />
 					<p:inputText value="#{personajeManaged.value}" required="true" 
-						label="Name" requiredMessage="name required"/>
+						label="Name"/>
 				</h:panelGrid>
 				<p:commandButton id="boton" value="Save" actionListener="#{personajeManaged.save}"
 					update="growl"/>
@@ -25,6 +25,14 @@
 			<h:commandLink id="logout" action="#{authenticationManaged.logout}" value="Logout">
 			</h:commandLink>
 		</h:form>
+				
+		<script type="text/javascript" src="../../js/statistics.js"></script>
+		<script src="../../js/statistics/highcharts.js"></script>
+		<script src="../../js/statistics/highcharts-more.js"></script>
+		<script src="../../js/statistics/modules/exporting.js"></script>
+		
+		<div id="containerPolar" style="width: 400px; height: 400px; margin: 0 auto"></div>
+		
 	</ui:define>
 	
 </ui:composition>
