@@ -1,10 +1,38 @@
 @CHARSET "ISO-8859-1";
 
 body{
-font-size:12px;
-font-style:Verdana;
+	font-size : 12px;
+	font-style : Verdana;
 }
 
 .ui-widget, .ui-widget .ui-widget {
-font-size: 12px; !important;
+	font-size : 12px;
+}
+
+.ui-menu.ui-menubar {
+	padding : 0px 20px 0px 20px;
+	border : 0;
+	margin : 0;
+	border-radius : 3px;
+}
+
+.ui-menuitem{
+	padding : 0;
+	border : 0;
+	margin : 0;
+	border-radius : 3px;
+}
+
+.ui-menuitem-link{
+	padding : 0;
+	border : 0;
+	margin : 0;
+	border-radius : 3px;
+}
+
+.ui-menuitem-text{
+	padding : 5px 10px 5px 10px;
+	border : 0;
+	margin : 0;
+	border-radius : 3px;
 }

@@ -2,37 +2,72 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" 
-	template="/pages/template.xhtml">
+	xmlns:p="http://primefaces.org/ui" template="/pages/template.xhtml">
 
 	<ui:define name="contenido">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".navbar-inverse-collapse"> <span class="icon-bar"></span>
+						<span class="icon-bar"></span> <span class="icon-bar"></span>
+					</a> <a class="brand" href="#">Spring Template</a>
+					<div class="nav-collapse collapse navbar-inverse-collapse">
+						<ul class="nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">Link</a></li>
+							<li><a href="#">Link</a></li>
+						</ul>
+						<ul class="nav pull-right">
+							<li><a href="#">Link</a></li>
+							<li class="divider-vertical"></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Account <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+									<li class="divider"></li>
+									<li>
+										<h:form id="flogout">
+											<p:commandButton 
+												id="logout" 
+												action="#{authenticationManaged.logout}"
+												value="Logout" />
+										</h:form>
+										<script>
+											$('[id$="logout"]').css({'color':'blue'});
+											$('[id$="flogout"]').css({'margin':'0','padding':'0 0 5px 20px'});
+										</script>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
 		<h:form>
-			<p:growl id="growl" showDetail="true" sticky="true" />
+			<p:growl id="growl"	showDetail="true" sticky="true" />
 			<p:panel header="Growl">
 				<h:panelGrid columns="2">
 					<h:outputText value="Your Name: *" />
-					<p:inputText value="#{personajeManaged.value}" required="true" 
-						label="Name"/>
+					<p:inputText value="#{personajeManaged.value}" required="true"
+						label="Name" />
 				</h:panelGrid>
-				<p:commandButton id="boton" value="Save" actionListener="#{personajeManaged.save}"
-					update="growl"/>
-				<script>
-					$('[id*="boton"]').css('color','blue');
-				</script>
+				<p:commandButton id="boton" value="Save"
+					actionListener="#{personajeManaged.save}" update="growl" />
 			</p:panel>
-		</h:form>		
-		<h:form>
-			<h:commandLink id="logout" action="#{authenticationManaged.logout}" value="Logout">
-			</h:commandLink>
 		</h:form>
-				
-		<script type="text/javascript" src="../../js/statistics.js"></script>
+
+		<script src="../../js/statistics.js"></script>
 		<script src="../../js/statistics/highcharts.js"></script>
 		<script src="../../js/statistics/highcharts-more.js"></script>
 		<script src="../../js/statistics/modules/exporting.js"></script>
-		
-		<div id="containerPolar" style="width: 400px; height: 400px; margin: 0 auto"></div>
-		
+
+		<div id="containerPolar"
+			style="width: 400px; height: 400px; margin: 0 auto"></div>
+
 	</ui:define>
-	
+
 </ui:composition>

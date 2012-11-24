@@ -5,26 +5,66 @@
 	xmlns:p="http://primefaces.org/ui" 
 	template="/pages/template.xhtml">
 
-	<ui:define name="contenido">		
-		<h:form prependId="false" >
-			<p:panel header="Login">
-				<h:panelGrid columns="2">
-					<h:outputText value="Your User: *" />
-					<p:inputText required="true" value="#{authenticationManaged.user}"
-					requiredMessage="user required"/>
-				</h:panelGrid>
-				<h:panelGrid columns="2">
-					<h:outputText value="Password: *" />
-					<p:password required="true" value="#{authenticationManaged.password}"/>
-				</h:panelGrid>
-				<h:selectBooleanCheckbox
-					value="#{authenticationManaged.rememberMe}" 
-					label="Remember Me">
-					Remember Me
-				</h:selectBooleanCheckbox>
-				<p:commandButton value="log in" action="#{authenticationManaged.login}"/>
-			</p:panel>
-		</h:form>	
+	<ui:define name="contenido">
+		<div class="navbar navbar-inverse">
+			<div class="navbar-inner">
+				<div class="container">
+					<a class="btn btn-navbar" data-toggle="collapse"
+						data-target=".navbar-inverse-collapse"> <span class="icon-bar"></span>
+						<span class="icon-bar"></span> <span class="icon-bar"></span>
+					</a> <a class="brand" href="#">Spring Template</a>
+					<div class="nav-collapse collapse navbar-inverse-collapse">
+						<ul class="nav">
+							<li class="active"><a href="#">Home</a></li>
+							<li><a href="#">Link</a></li>
+							<li><a href="#">Link</a></li>
+							<li class="divider-vertical"></li>
+							<li class="dropdown"><a href="#" class="dropdown-toggle"
+								data-toggle="dropdown">Account <b class="caret"></b></a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Action</a></li>
+									<li><a href="#">Another action</a></li>
+									<li><a href="#">Something else here</a></li>
+								</ul>
+							</li>
+						</ul>
+						<ul class="nav pull-right">
+							<li><a href="#">Link</a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div id="login">
+			<h:form prependId="false" >
+				<p:panel header="Login">
+					<h:panelGrid columns="2">
+						<h:outputText value="Your User: *" />
+						<p:inputText required="true" value="#{authenticationManaged.user}"
+						requiredMessage="user required"/>
+					</h:panelGrid>
+					<h:panelGrid columns="2">
+						<h:outputText value="Password: *" />
+						<p:password required="true" value="#{authenticationManaged.password}"/>
+					</h:panelGrid>
+					<h:selectBooleanCheckbox
+						value="#{authenticationManaged.rememberMe}">
+						Remember Me
+					</h:selectBooleanCheckbox>
+					<br/>
+					<p:commandButton id ="loginb" value="log in" action="#{authenticationManaged.login}"/>
+					<script>
+						$('[id$="loginb"]').css({'margin':'0 0 0 300px'});
+					</script>
+				</p:panel>
+			</h:form>	
+		</div>			
+		<script>
+			var lad = ($(window).width() - 400 )/2;
+			var alt = ($(window).height() - $('[id$="login"]').height())/2;
+			$('[id$="login"]').css({'width':'400px','padding':'0 0 0 '+lad+'px'});
+		</script>
 	</ui:define>
 	
 </ui:composition>
